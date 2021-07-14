@@ -43,18 +43,20 @@ class DbService {
 
     async insertNewUser(data) {
         try {
-            console.log('insetNewUser:',data);
+            console.log('insetNewUser  :',data);
+           
             const {userId,displayName,pictureUrl} = data;
-            console.log(userId,displayName);
-            // const dateAdded = new Date();
+            const picture = data.pictureUrl || 'No Picture';
+            console.log('USERS DETAILS:',userId,displayName,picture);
+
             const insertId = await new Promise((resolve, reject) => {
                 const query = "INSERT INTO lineuser (userId,displayName,pictureUrl) VALUES (?,?,?);";
-                connection.query(query, [data.userId, data.displayName, data.pictureUrl] , (err, result) => {
+                connection.query(query, [data.userId, data.displayName, picture] , (err, result) => {
                     if (err) reject(new Error(err.message));
-                    resolve(result.insertId);   
+                    // resolve(result.insertId);   
                 })
             });
-            console.log(insertId);
+            // console.log(insertId);
             return {
                 userId: userId,
                 displayName: displayName,
