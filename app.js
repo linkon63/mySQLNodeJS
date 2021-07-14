@@ -14,6 +14,12 @@ app.use(express.json());
 app.use(express.urlencoded({ extended : false }));
 app.use(bodeParser.json());
 
+
+app.get('/',(req ,res) => {
+    res.send('Hello Im root');
+})
+
+
 // create
 
 app.get('/getAll',(req,res) => {
